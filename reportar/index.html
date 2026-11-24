@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reportar un error | Golazo Diario</title><meta name="description" content="Reporta jugadores que están mal o que faltan en Golazo Diario."><link rel="canonical" href="https://golazodiario.lat/reportar/">
+<link rel="icon" type="image/svg+xml" href="../logo.svg"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta property="og:image" content="https://golazodiario.lat/og-image.png"><link rel="stylesheet" href="../style.css"><script>try{var t=JSON.parse(localStorage.getItem("fj:theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}</script></head>
+<body><main><header class="top"><a class="logo" href="../"><span class="lg1">Golazo</span><span class="lg2"> Diario</span></a></header>
+<article class="legal"><h1>REPORTAR UN ERROR</h1><p>Cuéntanos qué jugadores están mal (nombre, club o país) o cuáles faltan.</p>
+<textarea id="t" rows="6" placeholder="Escribe aquí qué jugadores están mal o cuáles faltan. Ejemplo: Liga MX: falta Cuauhtémoc Blanco."></textarea>
+<p><button class="btn" onclick="var v=document.getElementById('t').value.trim();if(!v){alert('Escribe primero qué está mal o qué falta.');return}location.href='mailto:contacto@golazodiario.lat?subject='+encodeURIComponent('Reporte de datos')+'&body='+encodeURIComponent(v)">Enviar por correo</button></p><p><a href="../">← Volver al juego</a></p></article></main></body></html>

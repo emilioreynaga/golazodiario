@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Ranking de tiempos del reto diario: un envío por dispositivo (el id del documento es el id del dispositivo). Sin edición ni borrado.
+    match /daily/{key}/entries/{dev} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['nick','score'])
+        && request.resource.data.nick is string
+        && request.resource.data.nick.size() >= 3 && request.resource.data.nick.size() <= 12
+        && request.resource.data.score is int
+        && request.resource.data.score >= 30000 && request.resource.data.score <= 36000000;
+      allow update, delete: if false;
+    }
+
+    // Ranking de rachas: la racha solo puede subir de uno en uno.
+    match /streaks/{game}/entries/{dev} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['nick','n'])
+        && request.resource.data.nick is string
+        && request.resource.data.nick.size() >= 3 && request.resource.data.nick.size() <= 12
+        && request.resource.data.n is int
+        && request.resource.data.n >= 1 && request.resource.data.n <= 50;
+      allow update: if request.resource.data.keys().hasOnly(['nick','n'])
+        && request.resource.data.nick is string
+        && request.resource.data.nick.size() >= 3 && request.resource.data.nick.size() <= 12
+        && request.resource.data.n == resource.data.n + 1;
+      allow delete: if false;
+    }
+  }
+}

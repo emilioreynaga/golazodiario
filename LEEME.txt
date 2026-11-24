@@ -1,0 +1,22 @@
+CÓMO PUBLICAR GOLAZO DIARIO (GitHub Pages, gratis)
+1. Crea una cuenta en github.com y un repositorio nuevo, público.
+2. Sube TODOS los archivos de esta carpeta (incluido CNAME y las carpetas), conservando la estructura.
+3. Settings > Pages > Source: 'Deploy from a branch' > main > / (root) > Save.
+4. En Settings > Pages > Custom domain escribe: golazodiario.lat > Save.
+5. En Namecheap > Domain List > Manage > Advanced DNS, crea estos registros:
+   A  @    185.199.108.153
+   A  @    185.199.109.153
+   A  @    185.199.110.153
+   A  @    185.199.111.153
+   CNAME  www  TU-USUARIO.github.io.
+   (borra los registros que Namecheap ponga por defecto para @ y www)
+6. Espera de unos minutos a 24 horas. Cuando GitHub confirme el dominio, activa 'Enforce HTTPS'.
+7. Registra el sitio en Google Search Console y envía https://golazodiario.lat/sitemap.xml
+
+ACTIVAR LOS RANKINGS (Firebase, gratis; sin esto la portada dice 'Ranking pronto')
+A. Entra a console.firebase.google.com con tu cuenta de Google > Add project (nombre: golazo-diario; puedes desactivar Analytics).
+B. Build > Firestore Database > Create database > base de datos (default), modo producción, ubicación cercana a tu público.
+C. Pestaña Rules > borra todo y pega el contenido del archivo firestore.rules > Publish.
+D. Project settings (engrane) > General > Your apps > icono </> (Web) > registra la app > copia projectId y apiKey.
+E. Abre fb-config.js, pega esos dos valores entre las comillas y vuelve a subir ese archivo a GitHub.
+F. (Recomendado) En console.cloud.google.com > APIs y servicios > Credenciales > tu API key > restringe por 'Sitios web (HTTP referrers)' a golazodiario.lat/*
